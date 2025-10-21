@@ -15,43 +15,31 @@ provider "aws" {
 
 # Amplify App
 resource "aws_amplify_app" "unicorn_website" {
-  name       = var.app_name
-  repository = var.github_repository
+  name = var.app_name
 
-  # Build settings
+  # Build settings for static website
   build_spec = <<-EOT
     version: 1
     frontend:
       phases:
-        preBuild:
-          commands:
-            - npm ci
         build:
           commands:
-            - npm run build
+            - mkdir -p dist
+            - cp index.html reports.html dist/
+            - cp amplify-unicorn-architecture.png dist/
       artifacts:
         baseDirectory: dist
         files:
           - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
   EOT
 
-  # Environment variables
-  environment_variables = {
-    AMPLIFY_DIFF_DEPLOY = "false"
-    AMPLIFY_MONOREPO_APP_ROOT = "."
-  }
-
-  # Enable auto branch creation
-  enable_auto_branch_creation = true
-  enable_branch_auto_build    = true
-  enable_branch_auto_deletion = true
+  # Platform
+  platform = "WEB"
 
   tags = {
     Name        = var.app_name
     Environment = var.environment
+    Project     = "unicorn-website"
   }
 }
 
@@ -77,14 +65,14 @@ resource "aws_amplify_domain_association" "custom_domain" {
   app_id      = aws_amplify_app.unicorn_website.id
   domain_name = var.custom_domain
 
-  # Subdomain configuration
+  # Subdomain configuration for awsweek2.cloudopsinsights.com
   sub_domain {
     branch_name = aws_amplify_branch.main.branch_name
-    prefix      = ""
+    prefix      = "awsweek2"
   }
 
   # Wait for DNS propagation
-  wait_for_verification = true
+  wait_for_verification = false
 }
 
 # Route 53 hosted zone (if managing DNS)
