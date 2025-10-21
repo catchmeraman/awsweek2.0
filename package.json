@@ -1,0 +1,14 @@
+{
+  "name": "unicorn-website",
+  "version": "1.0.0",
+  "description": "Simple unicorn website for AWS Amplify",
+  "main": "index.html",
+  "scripts": {
+    "build": "mkdir -p dist && cp index.html dist/",
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": ["aws", "amplify", "unicorn", "website"],
+  "author": "CloudOps Insights",
+  "license": "MIT"
+}
