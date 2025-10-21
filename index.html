@@ -79,6 +79,43 @@
             color: #888;
             font-size: 0.9rem;
         }
+        
+        .resources {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .resources h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .resource-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .resource-btn {
+            display: block;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .resource-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -103,6 +140,24 @@
             <div class="feature">
                 <h3>☁️ Scalable</h3>
                 <p>Auto-scaling CDN</p>
+            </div>
+        </div>
+        
+        <div class="resources">
+            <h2>📊 Project Resources</h2>
+            <div class="resource-links">
+                <a href="reports.html" class="resource-btn">
+                    📊 View All Reports
+                </a>
+                <a href="https://github.com/catchmeraman/awsweek2.0" target="_blank" class="resource-btn">
+                    📁 Source Code
+                </a>
+                <a href="https://github.com/catchmeraman/awsweek2.0/blob/main/amplify-cost-analysis.md" target="_blank" class="resource-btn">
+                    💰 Cost Analysis
+                </a>
+                <a href="https://github.com/catchmeraman/awsweek2.0/blob/main/main.tf" target="_blank" class="resource-btn">
+                    🏗️ Terraform Code
+                </a>
             </div>
         </div>
         
