@@ -25,7 +25,7 @@ resource "aws_amplify_app" "unicorn_website" {
         build:
           commands:
             - mkdir -p dist
-            - cp index.html about.html reports.html dist/
+            - cp index.html about.html reports.html cost-report.html dist/
             - cp amplify-unicorn-architecture.png dist/
       artifacts:
         baseDirectory: dist
