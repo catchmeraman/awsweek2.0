@@ -15,7 +15,7 @@ output "default_domain" {
 
 output "custom_domain_url" {
   description = "Custom domain URL"
-  value       = var.custom_domain != "" ? "https://awsweek2.${var.custom_domain}" : null
+  value       = var.custom_domain != "" ? "https://${var.subdomain_prefix}.${var.custom_domain}" : null
 }
 
 output "amplify_console_url" {
@@ -27,6 +27,6 @@ output "dns_records" {
   description = "DNS records needed for custom domain"
   value = var.custom_domain != "" ? {
     certificate_validation = "Add CNAME record from Amplify console for SSL validation"
-    subdomain_cname = "awsweek2 CNAME [CloudFront domain from Amplify console]"
+    subdomain_cname = "${var.subdomain_prefix} CNAME [CloudFront domain from Amplify console]"
   } : null
 }

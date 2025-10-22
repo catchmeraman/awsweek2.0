@@ -22,6 +22,12 @@ variable "custom_domain" {
   default     = "cloudopsinsights.com"
 }
 
+variable "subdomain_prefix" {
+  description = "Subdomain prefix for the custom domain"
+  type        = string
+  default     = "awsweek2"
+}
+
 variable "manage_dns" {
   description = "Whether to manage DNS with Route 53"
   type        = bool

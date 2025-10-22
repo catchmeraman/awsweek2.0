@@ -25,7 +25,7 @@ resource "aws_amplify_app" "unicorn_website" {
         build:
           commands:
             - mkdir -p dist
-            - cp index.html reports.html dist/
+            - cp index.html about.html reports.html dist/
             - cp amplify-unicorn-architecture.png dist/
       artifacts:
         baseDirectory: dist
@@ -65,10 +65,10 @@ resource "aws_amplify_domain_association" "custom_domain" {
   app_id      = aws_amplify_app.unicorn_website.id
   domain_name = var.custom_domain
 
-  # Subdomain configuration for awsweek2.cloudopsinsights.com
+  # Subdomain configuration
   sub_domain {
     branch_name = aws_amplify_branch.main.branch_name
-    prefix      = "awsweek2"
+    prefix      = var.subdomain_prefix
   }
 
   # Wait for DNS propagation
